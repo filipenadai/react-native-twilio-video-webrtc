@@ -231,6 +231,10 @@ export default class TwilioVideo extends Component {
     }
   }
 
+  applyZoom (zoomFactor) {
+    TWVideoModule.applyZoom(zoomFactor)
+  }
+
   /**
    * Get connection stats
    */

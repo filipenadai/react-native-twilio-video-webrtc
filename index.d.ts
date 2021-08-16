@@ -148,6 +148,7 @@ declare module "react-native-twilio-video-webrtc" {
     disconnect: () => void;
     flipCamera: () => void;
     toggleFlash: (flashOn: boolean) => void;
+    applyZoom: (zoomFactor: number) => void;
     toggleSoundSetup: (speaker: boolean) => void;
     getStats: () => void;
     publishLocalAudio: () => void;

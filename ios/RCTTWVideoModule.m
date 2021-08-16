@@ -315,6 +315,29 @@ RCT_EXPORT_METHOD(turnOffFlash) {
   }
 }
 
+RCT_EXPORT_METHOD(applyZoom:(float)zoomFactor) {
+  NSLog(@"Value of hello %lf", zoomFactor);
+  double zoomRequested = 0;
+  AVCaptureDevice *deviceSettings = self.camera.device;
+  NSError *error = nil;
+  if ([deviceSettings lockForConfiguration:&error]) {
+    NSLog(@"teste %lf", deviceSettings.maxAvailableVideoZoomFactor);
+    if (zoomFactor == 1) {
+      zoomRequested = deviceSettings.minAvailableVideoZoomFactor;
+    } else if (zoomFactor == 1.5) {
+      zoomRequested = 1.5;
+    } else if (zoomFactor == 2) {
+      zoomRequested = 2;
+    }
+    if (self.camera) {
+      if (deviceSettings.maxAvailableVideoZoomFactor >= zoomFactor) {
+        deviceSettings.videoZoomFactor = zoomRequested;       
+      }
+    }
+    [deviceSettings unlockForConfiguration];
+  }
+}
+
 RCT_EXPORT_METHOD(toggleSoundSetup:(BOOL)speaker) {
   NSError *error = nil;
   kTVIDefaultAVAudioSessionConfigurationBlock();
