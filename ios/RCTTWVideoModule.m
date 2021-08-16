@@ -287,6 +287,34 @@ RCT_EXPORT_METHOD(flipCamera) {
   }
 }
 
+RCT_EXPORT_METHOD(turnOnFlash) {
+  if (self.camera) {
+    AVCaptureDevice *deviceSettings = self.camera.device;
+    AVCapturePhotoSettings *photosettings = [AVCapturePhotoSettings photoSettings];
+    if ([deviceSettings hasTorch] && [deviceSettings hasFlash]){
+        [deviceSettings lockForConfiguration:nil];
+        [deviceSettings setTorchMode:AVCaptureTorchModeOn];
+        photosettings.flashMode = AVCaptureFlashModeOn;
+        //torchIsOn = YES;
+        [deviceSettings unlockForConfiguration];
+      }
+    }
+  }
+
+RCT_EXPORT_METHOD(turnOffFlash) {
+  if (self.camera) {
+    AVCaptureDevice *deviceSettings = self.camera.device;
+    AVCapturePhotoSettings *photosettings = [AVCapturePhotoSettings photoSettings];
+    if ([deviceSettings hasTorch] && [deviceSettings hasFlash]){
+      [deviceSettings lockForConfiguration:nil];
+      [deviceSettings setTorchMode:AVCaptureTorchModeOff];
+      photosettings.flashMode = AVCaptureFlashModeOn;
+        //torchIsOn = NO;
+      [deviceSettings unlockForConfiguration];
+    }
+  }
+}
+
 RCT_EXPORT_METHOD(toggleSoundSetup:(BOOL)speaker) {
   NSError *error = nil;
   kTVIDefaultAVAudioSessionConfigurationBlock();

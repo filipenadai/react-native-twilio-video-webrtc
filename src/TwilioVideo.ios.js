@@ -223,6 +223,14 @@ export default class TwilioVideo extends Component {
     TWVideoModule.toggleSoundSetup(speaker)
   }
 
+  toggleFlash (flashOn) {
+    if (flashOn) {
+      TWVideoModule.turnOffFlash()
+    } else {
+      TWVideoModule.turnOnFlash()
+    }
+  }
+
   /**
    * Get connection stats
    */
