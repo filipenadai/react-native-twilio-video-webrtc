@@ -100,8 +100,8 @@ public class CustomTwilioVideoViewManager extends SimpleViewManager<CustomTwilio
                 break;
             case SWITCH_CAMERA:
                 view.switchCamera();
-            case TOGGLE_FLASH:
-                view.toggleFlash();
+            // case TOGGLE_FLASH:
+            //     view.toggleFlash();
                 break;
             case TOGGLE_VIDEO:
                 Boolean videoEnabled = args.getBoolean(0);
@@ -190,7 +190,7 @@ public class CustomTwilioVideoViewManager extends SimpleViewManager<CustomTwilio
         return MapBuilder.<String, Integer>builder()
                 .put("connectToRoom", CONNECT_TO_ROOM)
                 .put("disconnect", DISCONNECT)
-                .put("switchCamera", SWITCH_CAMERA)
+                // .put("switchCamera", SWITCH_CAMERA)
                 .put("toggleFlash", TOGGLE_FLASH)
                 .put("toggleVideo", TOGGLE_VIDEO)
                 .put("toggleSound", TOGGLE_SOUND)
