@@ -618,6 +618,19 @@ public class CustomTwilioVideoView extends View implements LifecycleEventListene
         }
     }
 
+    public void toggleFlash() {
+        if (cameraCapturer != null) {
+            cameraCapturer.updateCameraParameters(new CameraParameterUpdater() {
+                @Override
+                public void apply(Camera.Parameters cameraParameters) {
+                    if (cameraParameters.getFlashMode() != null) {
+                        cameraParameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                    }
+                }
+            });
+        }
+    }
+
     public void toggleVideo(boolean enabled) {
       isVideoEnabled = enabled;
 
