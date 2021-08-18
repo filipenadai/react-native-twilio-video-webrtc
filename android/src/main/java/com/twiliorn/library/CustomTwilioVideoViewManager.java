@@ -59,6 +59,7 @@ public class CustomTwilioVideoViewManager extends SimpleViewManager<CustomTwilio
     private static final int SEND_STRING = 12;
     private static final int PUBLISH_VIDEO = 13;
     private static final int PUBLISH_AUDIO = 14;
+    private static final int TOGGLE_FLASH = 15;
 
     @Override
     public String getName() {
@@ -100,8 +101,9 @@ public class CustomTwilioVideoViewManager extends SimpleViewManager<CustomTwilio
                 break;
             case SWITCH_CAMERA:
                 view.switchCamera();
-            // case TOGGLE_FLASH:
-            //     view.toggleFlash();
+            case TOGGLE_FLASH:
+                Boolean onFlash = args.getBoolean(0);
+                view.toggleFlash(onFlash);
                 break;
             case TOGGLE_VIDEO:
                 Boolean videoEnabled = args.getBoolean(0);
@@ -190,8 +192,7 @@ public class CustomTwilioVideoViewManager extends SimpleViewManager<CustomTwilio
         return MapBuilder.<String, Integer>builder()
                 .put("connectToRoom", CONNECT_TO_ROOM)
                 .put("disconnect", DISCONNECT)
-                // .put("switchCamera", SWITCH_CAMERA)
-                .put("toggleFlash", TOGGLE_FLASH)
+                .put("switchCamera", SWITCH_CAMERA)
                 .put("toggleVideo", TOGGLE_VIDEO)
                 .put("toggleSound", TOGGLE_SOUND)
                 .put("getStats", GET_STATS)
@@ -199,6 +200,7 @@ public class CustomTwilioVideoViewManager extends SimpleViewManager<CustomTwilio
                 .put("toggleRemoteSound", TOGGLE_REMOTE_SOUND)
                 .put("toggleBluetoothHeadset", TOGGLE_BLUETOOTH_HEADSET)
                 .put("sendString", SEND_STRING)
+                .put("toggleFlash", TOGGLE_FLASH)
                 .build();
     }
 }

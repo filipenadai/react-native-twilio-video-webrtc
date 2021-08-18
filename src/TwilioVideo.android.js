@@ -162,7 +162,7 @@ const nativeEvents = {
   sendString: 12,
   publishVideo: 13,
   publishAudio: 14,
-  // toggleFlash: 15,
+  toggleFlash: 15,
 }
 
 class CustomTwilioVideoView extends Component {
@@ -224,9 +224,9 @@ class CustomTwilioVideoView extends Component {
     this.runCommand(nativeEvents.switchCamera, [])
   }
 
-  // toggleFlash () {
-  //   this.runCommand(nativeEvents.toggleFlash, [])
-  // }
+  toggleFlash (onFlash) {
+    this.runCommand(nativeEvents.toggleFlash, [onFlash])
+  }
 
   setLocalVideoEnabled (enabled) {
     this.runCommand(nativeEvents.toggleVideo, [enabled])

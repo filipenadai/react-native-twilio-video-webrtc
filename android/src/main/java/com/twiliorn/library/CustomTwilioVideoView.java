@@ -26,6 +26,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.StringDef;
 import android.util.Log;
 import android.view.View;
+import android.hardware.Camera;
 
 import com.facebook.react.bridge.LifecycleEventListener;
 import com.facebook.react.bridge.WritableArray;
@@ -37,6 +38,7 @@ import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.twilio.video.AudioTrackPublication;
 import com.twilio.video.BaseTrackStats;
 import com.twilio.video.CameraCapturer;
+import com.twilio.video.CameraParameterUpdater;
 import com.twilio.video.ConnectOptions;
 import com.twilio.video.LocalAudioTrack;
 import com.twilio.video.LocalAudioTrackPublication;
@@ -618,18 +620,21 @@ public class CustomTwilioVideoView extends View implements LifecycleEventListene
         }
     }
 
-    // public void toggleFlash() {
-    //     if (cameraCapturer != null) {
-    //         cameraCapturer.updateCameraParameters(new CameraParameterUpdater() {
-    //             @Override
-    //             public void apply(Camera.Parameters cameraParameters) {
-    //                 if (cameraParameters.getFlashMode() != null) {
-    //                     cameraParameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
-    //                 }
-    //             }
-    //         });
-    //     }
-    // }
+    public void toggleFlash(boolean onFlash) {
+        cameraCapturer.updateCameraParameters(new CameraParameterUpdater() {
+            @Override
+            public void apply(Camera.Parameters cameraParameters) {
+                // Ensure camera supports flash and turn on
+                if (cameraParameters.getFlashMode() != null) {
+                    if (onFlash) {
+                        cameraParameters.setFlashMode(cameraParameters.FLASH_MODE_TORCH);
+                    } else {
+                        cameraParameters.setFlashMode(cameraParameters.FLASH_MODE_OFF);
+                    }
+                }
+            }
+        });
+    }
 
     public void toggleVideo(boolean enabled) {
       isVideoEnabled = enabled;
