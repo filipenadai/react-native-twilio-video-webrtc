@@ -216,10 +216,6 @@ export default class TwilioVideo extends Component {
     TWVideoModule.flipCamera()
   }
 
-  flipCamera () {
-    return TWVideoModule.getCameraPosition()
-  }
-
   /**
    * Toggle audio setup from speaker (default) and headset
    */

@@ -268,12 +268,6 @@ RCT_REMAP_METHOD(setLocalVideoEnabled, enabled:(BOOL)enabled setLocalVideoEnable
   resolve(@(result));
 }
 
-RCT_EXPORT_METHOD(getCameraPosition) {
-  AVCaptureDevicePosition position = self.camera.device.position;
-  NSString selectedPosition = position == AVCaptureDevicePositionFront ? 'front' : 'back';
-  return selectedPosition
-}
-
 RCT_EXPORT_METHOD(flipCamera) {
     if (self.camera) {
         AVCaptureDevicePosition position = self.camera.device.position;
